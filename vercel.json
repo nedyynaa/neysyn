@@ -1,15 +1,9 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "Project_ats/neysyn/src/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "Project_ats/neysyn/src/index.js"
+      "source": "/(.*)",
+      "destination": "/Project_ats/neysyn/src/index.js"
     }
   ]
 }
