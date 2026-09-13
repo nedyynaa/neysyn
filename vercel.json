@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "destination": "Project_ats/neysyn/src/index.js"
+      "dest": "Project_ats/neysyn/src/index.js"
     }
   ]
 }
