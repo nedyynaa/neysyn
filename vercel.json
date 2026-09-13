@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "Project_ats/index.js",
+      "src": "Project_ats/neysyn/src/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "Project_ats/index.js"
+      "dest": "Project_ats/neysyn/src/index.js"
     }
   ]
 }
