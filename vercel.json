@@ -6,10 +6,10 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "Project_ats/neysyn/src/index.js"
+      "source": "/(.*)",
+      "destination": "Project_ats/neysyn/src/index.js"
     }
   ]
 }
