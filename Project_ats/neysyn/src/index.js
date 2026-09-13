@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Konfigurasi penyimpanan file upload fisik
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/');
@@ -19,7 +18,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Folder uploads agar bisa diakses publik
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 const db = mysql.createConnection({
@@ -34,7 +32,6 @@ db.connect((err) => {
     console.log("Database Terhubung!");
 });
 
-// GET: Ambil semua artikel
 app.get('/api/posts', (req, res) => {
     db.query('SELECT * FROM posts', (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -42,7 +39,6 @@ app.get('/api/posts', (req, res) => {
     });
 });
 
-// POST: Tambah artikel baru dengan upload gambar
 app.post('/api/posts', upload.single('image'), (req, res) => {
     const { category_id = 1, title, subtitle = 'Subjudul', author = 'Penulis', reading_time = '3 min read', content } = req.body;
     const image_url = req.file ? `/uploads/${req.file.filename}` : 'assets/images/cat.png';
@@ -54,7 +50,6 @@ app.post('/api/posts', upload.single('image'), (req, res) => {
     });
 });
 
-// PUT: Update artikel dengan upload gambar baru (opsional)
 app.put('/api/posts/:id', upload.single('image'), (req, res) => {
     const { id } = req.params;
     const { category_id = 1, title, subtitle = 'Subjudul', author = 'Penulis', reading_time = '3 min read', content } = req.body;
@@ -75,7 +70,6 @@ app.put('/api/posts/:id', upload.single('image'), (req, res) => {
     });
 });
 
-// DELETE: Hapus artikel
 app.delete('/api/posts/:id', (req, res) => {
     const { id } = req.params;
     db.query('DELETE FROM posts WHERE post_id = ?', [id], (err, result) => {
@@ -84,7 +78,6 @@ app.delete('/api/posts/:id', (req, res) => {
     });
 });
 
-// REGISTER & LOGIN
 app.post('/api/register', (req, res) => {
     const { username, email, password } = req.body;
     db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, password], (err, result) => {
