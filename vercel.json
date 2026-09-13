@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "functions": {
-    "Project_ats/neysyn/src/index.js": {
-      "maxDuration": 10
-    }
-  },
-  "rewrites": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/Project_ats/neysyn/src/index.js"
+      "src": "Project_ats/neysyn/src/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "destination": "Project_ats/neysyn/src/index.js"
     }
   ]
 }
