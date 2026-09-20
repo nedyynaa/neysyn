@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/Project_ats/neysyn/src/index.js"
-    }
-  ]
-}

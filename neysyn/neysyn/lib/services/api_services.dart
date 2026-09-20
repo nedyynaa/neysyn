@@ -4,10 +4,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:3000/api';
+  static const String baseUrl = 'https://neysyn-ltsz.vercel.app';
 
   static Future<List<dynamic>> fetchPosts() async {
-    final response = await http.get(Uri.parse('$baseUrl/posts'));
+    final response = await http.get(Uri.parse('$baseUrl/api/posts'));
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
@@ -20,7 +20,10 @@ class ApiService {
     String content,
     XFile? imageFile,
   ) async {
-    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/posts'));
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$baseUrl/api/posts'),
+    );
     request.fields['title'] = title;
     request.fields['content'] = content;
     request.fields['category_id'] = '1';
@@ -55,7 +58,10 @@ class ApiService {
     String content,
     XFile? imageFile,
   ) async {
-    var request = http.MultipartRequest('PUT', Uri.parse('$baseUrl/posts/$id'));
+    var request = http.MultipartRequest(
+      'PUT',
+      Uri.parse('$baseUrl/api/posts/$id'),
+    );
     request.fields['title'] = title;
     request.fields['content'] = content;
     request.fields['category_id'] = '1';
@@ -85,7 +91,7 @@ class ApiService {
   }
 
   static Future<void> deletePost(int id) async {
-    final response = await http.delete(Uri.parse('$baseUrl/posts/$id'));
+    final response = await http.delete(Uri.parse('$baseUrl/api/posts/$id'));
     if (response.statusCode != 200) {
       throw Exception('Gagal menghapus artikel');
     }
