@@ -18,7 +18,6 @@ class _HomePageState extends State<HomePage> {
   final int _currentIndex = 0;
   String _activeAuthorName = 'nedyna';
   
-  // State untuk menyimpan status like per artikel (berdasarkan post_id atau index)
   final Map<dynamic, bool> _likedStatus = {};
   final Map<dynamic, int> _likeCounts = {};
 
